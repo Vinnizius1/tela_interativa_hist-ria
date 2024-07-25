@@ -18,24 +18,46 @@ console.log();
 
 /* INTRODUÇÃO/CRIAÇÃO DO PERSONAGEM COM NOME E HABILIDADE ÚNICA */
 console.log("APRESENTAÇÃO DO PERSONAGEM");
-let nomeDoHeroi;
-do {
-  nomeDoHeroi = prompt("Diga o nome dele: ");
-} while (nomeDoHeroi.trim() === "");
+
+// Função que validará o nome do herói contra "espaço vazio" e caracteres que não sejam letras
+function obterNomeValido() {
+  let nomeDoHeroi;
+  do {
+    nomeDoHeroi = prompt("Diga o nome dele: ");
+    if (nomeDoHeroi.trim() === "" || !/^[a-zA-Z\s]+$/.test(nomeDoHeroi)) {
+      console.log("Nome só pode conter letras! Tente novamente.");
+    } else {
+      // Retorna o nome com o 1º caractere sempre maiúsculo
+      return nomeDoHeroi.charAt(0).toLocaleUpperCase() + nomeDoHeroi.slice(1);
+    }
+  } while (true);
+}
+
+// Variável que terá o 'nome' retornado da função de validação
+const nomeDoHeroi = obterNomeValido();
 console.log();
 
-// Nome do herói criado após a validação de "espaço vazio"
+// Explicação sobre as 2 habilidades disponíveis no jogo
 console.log(
   `Certo, ${nomeDoHeroi}! Agora, em qual habilidade ele mais se destacará? \n`
 );
-console.log("1. Força");
-console.log("2. Sabedoria\n");
+console.log("1. Força - você terá 100 de nível 'força' e 70 de nível 'vida'");
+console.log(
+  "*Força* é importante principalmente para combates a curta distância, além de outras vantagens ao longo da história...\n"
+);
+console.log(
+  "2. Sabedoria - você terá 70 de nível 'força' e 100 de nível 'vida'"
+);
+console.log(
+  "*Sabedoria* coloca você à frente da estratégia no combate, e também te prepara para melhores decisões..."
+);
 
 // Função que retornará a habiliade escolhida (forçará o usuário a digitar corretamente)
 function obterHabilidadeValida() {
   let habilidadeDoHeroi;
   do {
     habilidadeDoHeroi = prompt("Digite a opção desejada (1 ou 2): ");
+    console.log();
   } while (habilidadeDoHeroi !== "1" && habilidadeDoHeroi !== "2");
   return habilidadeDoHeroi;
 }
