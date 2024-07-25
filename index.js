@@ -78,17 +78,15 @@ function criarHeroi(nome, habilidade) {
     vida = 100;
     forca = 70;
   }
-  // Aqui criamos o "heroi" de acordo com a habilidade escolhida, se "Força" terá menos "vida" e mais "forca", se "Sabedoria" será o oposto disso
+  // Aqui retornamos o "heroi" criado de acordo com a habilidade escolhida
   return new Heroi(vida, nome, 100, forca);
 }
 
-console.log(`\nHerói criado com sucesso!
-Nome: ${nomeDoHeroi}
-Habilidade: ${habilidadeEscolhida}`);
+// Criação do objeto/instância da classe Heroi
+const heroi = criarHeroi(nomeDoHeroi, habilidadeEscolhida);
+heroi.apresentação();
 console.log();
 
-const heroi = criarHeroi(nomeDoHeroi, habilidadeEscolhida);
-console.log(heroi);
 // console.log(
 //   "O ano era 500 d.C., quando os reis eram respeitados por sua bravura e, acima de tudo, justiça... Não muito distante das terras áridas de 'Sequidão', um jovem nenhum, jamais conhecido fora de sua simples e pequena vila, 'Pequenez', decidiu mudar a sua vida de uma forma radical e inesperada: tomou rumo pela estrada chamada 'Estreita', uma estrada muito, muito perigosa..."
 // );

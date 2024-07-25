@@ -12,6 +12,14 @@ class Heroi extends Personagem {
     this.fome = fome;
     this.forca = forca;
   }
+
+  apresentação() {
+    console.log(`Nome: ${this.nome}`);
+    console.log(`Vida: ${this.vida}%`);
+    console.log(`Fome: ${this.fome}%`);
+    console.log(`Força: ${this.forca}%`);
+    console.log(`Moedas: $${this.moedas}`);
+  }
 }
 
 module.exports = Heroi;
