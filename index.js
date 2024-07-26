@@ -63,6 +63,7 @@ function obterHabilidadeValida() {
 }
 console.log();
 
+// Variáveis que armazenarão o quesito "habilidade"
 const habilidadeDoHeroi = obterHabilidadeValida();
 const habilidades = ["Força", "Sabedoria"];
 const habilidadeEscolhida = habilidades[habilidadeDoHeroi - 1];
@@ -79,14 +80,46 @@ function criarHeroi(nome, habilidade) {
     forca = 70;
   }
   // Aqui retornamos o "heroi" criado de acordo com a habilidade escolhida
-  return new Heroi(vida, nome, 100, forca);
+  return new Heroi(vida, nome, 100, forca, habilidade);
 }
 
 // Criação do objeto/instância da classe Heroi
-const heroi = criarHeroi(nomeDoHeroi, habilidadeEscolhida);
-heroi.apresentação();
+let heroi = criarHeroi(nomeDoHeroi, habilidadeEscolhida);
+console.log();
+console.log("Herói criado com sucesso!");
+heroi.status();
 console.log();
 
-// console.log(
-//   "O ano era 500 d.C., quando os reis eram respeitados por sua bravura e, acima de tudo, justiça... Não muito distante das terras áridas de 'Sequidão', um jovem nenhum, jamais conhecido fora de sua simples e pequena vila, 'Pequenez', decidiu mudar a sua vida de uma forma radical e inesperada: tomou rumo pela estrada chamada 'Estreita', uma estrada muito, muito perigosa..."
-// );
+console.log(
+  `${nomeDoHeroi}, como era conhecido, sabendo dos riscos dessa longa aventura, quis se preparar para a viagem decidindo levar junto de si: `
+);
+console.log("1. Espada");
+console.log("2. Arco e Flecha");
+
+// Função que retornará a arma escolhida (forçará o usuário a digitar corretamente)
+function obterArma() {
+  let armaDoHeroi;
+  do {
+    armaDoHeroi = prompt("Digite a opção desejada (1 ou 2): ");
+    console.log();
+  } while (armaDoHeroi !== "1" && armaDoHeroi !== "2");
+  return armaDoHeroi;
+}
+
+// Variáveis que armazenarão o quesito "arma"
+const armaDoHeroi = obterArma(); // Chama a função corretamente
+const armas = ["Espada", "Arco e Flecha"];
+const armaEscolhida = armas[armaDoHeroi - 1];
+
+// Adiciona a arma ao objeto herói
+heroi.arma = armaEscolhida; // Atribui a arma escolhida ao atributo arma do herói
+
+console.log(`Arma '${armaEscolhida}' adicionada!\n`);
+heroi.status();
+console.log();
+
+// Início da história
+/* console.log(
+  "O ano era 500 d.C., quando os reis eram respeitados por sua bravura e, acima de tudo, justiça... Não muito distante das terras áridas chamadas 'Sequidão', um jovem nenhum, de uma simples e pequena vila, 'Pequenez', decidiu mudar a sua vida de uma forma radical e inesperada: tomou rumo pela estrada chamada 'Estreita', uma estrada muito, muito perigosa..."
+);
+ */
