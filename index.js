@@ -86,7 +86,9 @@ function criarHeroi(nome, habilidade) {
 // Atribuição do objeto/instância da classe Heroi
 let heroi = criarHeroi(nomeDoHeroi, habilidadeEscolhida);
 console.log();
-console.log("Herói criado com sucesso!");
+console.log(
+  `Herói criado e habilidade do tipo '${habilidadeEscolhida}' adicionada com sucesso!\n`
+);
 heroi.status();
 console.log();
 
@@ -119,6 +121,11 @@ heroi.status();
 console.log();
 
 /* INÍCIO DA HISTÓRIA */
+console.log(`
+-------
+PRÓLOGO
+-------
+`);
 console.log(
   "O ano era 500 d.C., quando os reis eram respeitados por sua bravura e, acima de tudo, justiça..."
 );

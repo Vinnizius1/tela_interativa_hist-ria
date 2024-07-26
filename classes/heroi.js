@@ -20,7 +20,7 @@ class Heroi extends Personagem {
     console.log(`Fome: ${this.fome}%`);
     console.log(`Força: ${this.forca}%`);
     console.log(`Habilidade especial: ${this.habilidade}`);
-    console.log(`Arma: '${this.arma}'`);
+    console.log(`Arma: ${this.arma}`);
     console.log(`Moedas: $${this.moedas}`);
   }
 
