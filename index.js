@@ -5,7 +5,7 @@ const Vilao = require("./classes/vilao1");
 
 /* INTRODUÇÃO DO JOGO */
 console.log();
-console.log("NOME DO JOGO");
+console.log(">>>NOME DO JOGO<<<");
 console.log();
 console.log(
   "Bem-vindo jogador, este é o seu jogo de aventura e ação! As suas atitudes importarão e um bom número sorteado no dado também... prepare-se!"
@@ -83,7 +83,7 @@ function criarHeroi(nome, habilidade) {
   return new Heroi(vida, nome, 100, forca, habilidade);
 }
 
-// Criação do objeto/instância da classe Heroi
+// Atribuição do objeto/instância da classe Heroi
 let heroi = criarHeroi(nomeDoHeroi, habilidadeEscolhida);
 console.log();
 console.log("Herói criado com sucesso!");
@@ -107,19 +107,21 @@ function obterArma() {
 }
 
 // Variáveis que armazenarão o quesito "arma"
-const armaDoHeroi = obterArma(); // Chama a função corretamente
+const armaDoHeroi = obterArma();
 const armas = ["Espada", "Arco e Flecha"];
 const armaEscolhida = armas[armaDoHeroi - 1];
 
 // Adiciona a arma ao objeto herói
-heroi.arma = armaEscolhida; // Atribui a arma escolhida ao atributo arma do herói
+heroi.arma = armaEscolhida; // Atribui a arma escolhida ao atributo arma
 
 console.log(`Arma '${armaEscolhida}' adicionada!\n`);
 heroi.status();
 console.log();
 
-// Início da história
-/* console.log(
-  "O ano era 500 d.C., quando os reis eram respeitados por sua bravura e, acima de tudo, justiça... Não muito distante das terras áridas chamadas 'Sequidão', um jovem nenhum, de uma simples e pequena vila, 'Pequenez', decidiu mudar a sua vida de uma forma radical e inesperada: tomou rumo pela estrada chamada 'Estreita', uma estrada muito, muito perigosa..."
+/* INÍCIO DA HISTÓRIA */
+console.log(
+  "O ano era 500 d.C., quando os reis eram respeitados por sua bravura e, acima de tudo, justiça..."
 );
- */
+console.log(
+  "Não muito distante das terras áridas chamadas 'Sequidão', um jovem nenhum, de uma simples e pequena vila, 'Pequenez', decidiu mudar a sua vida de uma forma radical e inesperada: tomou rumo pela estrada chamada 'Estreita', uma estrada muito, muito perigosa..."
+);
