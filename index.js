@@ -5,8 +5,10 @@ const Vilao = require("./classes/vilao1");
 
 /* INTRODUÇÃO DO JOGO */
 console.log();
-console.log(">>>NOME DO JOGO<<<");
+// Nome do jogo
+console.log(`"CAMINHO DE LUZ" - Jogo de Texto`);
 console.log();
+// 1ª apresentação do jogo
 console.log(
   "Bem-vindo jogador, este é o seu jogo de aventura e ação! As suas atitudes importarão e um bom número sorteado no dado também... prepare-se!"
 );
@@ -17,8 +19,7 @@ console.log(
 console.log();
 
 /* INTRODUÇÃO/CRIAÇÃO DO PERSONAGEM COM NOME E HABILIDADE ÚNICA */
-console.log("APRESENTAÇÃO DO PERSONAGEM");
-
+console.log("Apresentação do Personagem");
 // Função que validará o nome do herói contra "espaço vazio" e caracteres que não sejam letras
 function obterNomeValido() {
   let nomeDoHeroi;
@@ -33,13 +34,16 @@ function obterNomeValido() {
   } while (true);
 }
 
-// Variável que terá o 'nome' retornado da função de validação
+// Variável que terá o "nome" do herói retornado da função de validação
 const nomeDoHeroi = obterNomeValido();
+
+// Construção do herói
+let heroi = new Heroi(100, nomeDoHeroi, 100, 100);
 console.log();
 
 // Explicação sobre as 2 habilidades disponíveis no jogo
 console.log(
-  `Certo, ${nomeDoHeroi}! Agora, em qual habilidade ele mais se destacará? \n`
+  `Certo, ${heroi.nome}! Agora, em qual habilidade ele mais se destacará? \n`
 );
 console.log("1. Força - você terá 100 de nível 'força' e 70 de nível 'vida'");
 console.log(
@@ -69,8 +73,8 @@ const habilidades = ["Força", "Sabedoria"];
 const habilidadeEscolhida = habilidades[habilidadeDoHeroi - 1];
 
 // Função que retornará a "criação do objeto herói"
-function criarHeroi(nome, habilidade) {
-  // variáveis que se alterarão de acordo com a escolha da "habilidade" feita pelo usuário
+function criaHabilidade(heroi, habilidade) {
+  // variáveis que se alterarão de acordo com a escolha da "habilidade" pelo usuário
   let vida, forca;
   if (habilidade === "Força") {
     vida = 70;
@@ -79,12 +83,14 @@ function criarHeroi(nome, habilidade) {
     vida = 100;
     forca = 70;
   }
-  // Aqui retornamos o "heroi" criado de acordo com a habilidade escolhida
-  return new Heroi(vida, nome, 100, forca, habilidade);
+  // Aqui atribuímos novos valores às propriedades diretamente
+  heroi.vida = vida;
+  heroi.forca = forca;
+  heroi.habilidade = habilidade;
 }
 
-// Atribuição do objeto/instância da classe Heroi
-let heroi = criarHeroi(nomeDoHeroi, habilidadeEscolhida);
+// .........................
+criaHabilidade(heroi, habilidadeEscolhida);
 console.log();
 console.log(
   `Herói criado e habilidade do tipo '${habilidadeEscolhida}' adicionada com sucesso!\n`
@@ -92,8 +98,9 @@ console.log(
 heroi.status();
 console.log();
 
+// Escolha da arma
 console.log(
-  `${nomeDoHeroi}, como era conhecido, sabendo dos riscos dessa longa aventura, quis se preparar para a viagem decidindo levar junto de si: `
+  `${heroi.nome}, como era conhecido, sabendo dos riscos dessa longa aventura, quis se preparar para esta viagem decidindo levar junto de si: `
 );
 console.log("1. Espada");
 console.log("2. Arco e Flecha");
@@ -123,12 +130,11 @@ console.log();
 /* INÍCIO DA HISTÓRIA */
 console.log(`
 -------
-PRÓLOGO
+Prólogo
 -------
 `);
 console.log(
-  "O ano era 500 d.C., quando os reis eram respeitados por sua bravura e, acima de tudo, justiça..."
-);
-console.log(
-  "Não muito distante das terras áridas chamadas 'Sequidão', um jovem nenhum, de uma simples e pequena vila, 'Pequenez', decidiu mudar a sua vida de uma forma radical e inesperada: tomou rumo pela estrada chamada 'Estreita', uma estrada muito, muito perigosa..."
+  `O ano era 500 d.C., quando os reis eram respeitados por sua bravura e, acima de tudo, justiça...
+Não muito distante das terras áridas chamadas 'Sequidão', um jovem quase desconhecido, de uma simples e pequena vila, 'Pequenez', decidiu mudar a sua vida de uma forma radical e inesperada...
+Tomou rumo pela estrada chamada 'Estreita', uma estrada muito, muito perigosa...`
 );
