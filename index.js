@@ -1,7 +1,15 @@
 const prompt = require("prompt-sync")({ sigint: true });
 
+// Importação das classes
 const Heroi = require("./classes/heroi");
 const Vilao = require("./classes/vilao1");
+
+// Importação das funções auxiliares e dos Atos
+const querVerStatus = require("./funcoes_auxiliares/querVerStatus");
+const primeiroAto = require("./atos/primeiroAto");
+
+// Variável que mostrará para qual "Ato" o jogador está indo
+let numeroDoProximoAto = 1;
 
 /* INTRODUÇÃO DO JOGO */
 console.log();
@@ -38,7 +46,7 @@ function obterNomeValido() {
 const nomeDoHeroi = obterNomeValido();
 
 // Construção do objeto herói
-let heroi = new Heroi(100, nomeDoHeroi, 70, 100);
+let heroi = new Heroi(100, nomeDoHeroi, 20, 100);
 console.log();
 
 // Explicação sobre as 2 habilidades disponíveis no jogo
@@ -98,7 +106,7 @@ console.log(
   `Herói criado e habilidade do tipo '${habilidadeEscolhida}' adicionada com sucesso!`
 );
 console.log();
-heroi.status();
+heroi.exibirStatus("2");
 console.log();
 
 // Escolha da arma
@@ -128,7 +136,7 @@ heroi.arma = armaEscolhida; // Atribui a arma escolhida ao atributo arma
 
 console.log(`Arma '${armaEscolhida}' adicionada!`);
 console.log();
-heroi.status();
+heroi.exibirStatus("1");
 console.log();
 
 /* INÍCIO DA HISTÓRIA */
@@ -148,56 +156,13 @@ console.log(
 "Qual seria o meu propósito?" - perguntava ${heroi.nome},
 "Preciso encontrar a minha princesa!" - exclamava em alto e bom som consigo mesmo, afinal estar solteiro já não o agradava mais...`
 );
-console.log(`
-  -------
-  1º Ato
-  -------
-  `);
-console.log(
-  `Ora, não faziam 2 horas do início de sua caminhada pela estrada Estreita, e ${heroi.nome} se depara com um problema: esquecera o seu odre de água!
 
-O que você fará? `
-);
-console.log();
-console.log(
-  "1. Retornar rapidamente para a vila e pegar logo o seu odre, pois logo irá escurecer!"
-);
-console.log(
-  "2. Pedir ajuda ao seu grande amigo que se aproxima retornando para a vila após uma viagem de negócios."
-);
+primeiroAto(heroi);
 
-// Função que retornará a atitude escolhida
-function definirAtitude() {
-  let atitudeDoHeroi;
-  do {
-    atitudeDoHeroi = prompt("Digite a opção desejada (1 ou 2): ");
-    console.log();
-  } while (atitudeDoHeroi !== "1" && atitudeDoHeroi !== "2");
-  return atitudeDoHeroi;
-}
+// Após o 1º Ato, pergunta se o usuário quer ver o status ou deseja pular para o próximo
+querVerStatus(heroi, numeroDoProximoAto);
+
+//
 console.log();
-// Variável que armazenará o resultado da função definirAtitude
-const atitudeDoHeroi = definirAtitude();
-// Consequências dessa atitude
-if (atitudeDoHeroi === "1") {
-  console.log(
-    `${heroi.nome} decidi voltar às pressas para vila e, logo ao pisar dentro do cercado que delimitava a região, algumas pessoas conhecidas começaram a rir dele, dizendo: "Haha! O maluco voltou correndo após sua insensatez, bem que eu disse!" - então, por um instante, a tristeza o abateu...`
-  );
-  console.log(heroi.forca);
-  // Diminui a força do herói
-  heroi.forca -= 10;
-  console.log(
-    `${heroi.nome} perdeu 10 pontos de força. Agora a sua força é ${heroi.forca}.`
-  );
-} else {
-  console.log(`${heroi.nome} decidi pedir ajuda ao seu grande amigo de infância, chamado Fiel.
-Prontamente ele se dispõe, e traz não apenas o odre com a melhor água de poço, gelada e cristalina, mas também um alforje carregado de frutas e cereais para seu mantimento durante a jornada.
-"Muito obrigado, meu amigo!" - disse ${heroi.nome}, então Fiel respondeu: "De nada, estou muito feliz por você, continue firme! Seguirei o seu exemplo, logo será a minha vez!"`);
-  // Aumenta a força do herói
-  heroi.forca += 10;
-  heroi.fome += 15;
-  console.log(
-    `${heroi.nome} ganhou 10 pontos de força e 15 de fome. Agora a sua força é ${heroi.forca} e fome ${heroi.fome}.`
-  );
-}
+//
 prompt("Digite uma tecla para continuar...");
