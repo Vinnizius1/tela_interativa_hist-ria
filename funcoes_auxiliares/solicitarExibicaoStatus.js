@@ -1,6 +1,6 @@
 const prompt = require("prompt-sync")({ sigint: true });
 
-function querVerStatus(heroi, numeroDoProximoAto) {
+function solicitarExibicaoStatus(heroi, numeroDoProximoAto) {
   /* //
   let x;
   //
@@ -39,4 +39,4 @@ function querVerStatus(heroi, numeroDoProximoAto) {
     : console.log(`Pulando para o "${numeroDoProximoAto + 1}º Ato"!`);
 }
 
-module.exports = querVerStatus;
+module.exports = solicitarExibicaoStatus;

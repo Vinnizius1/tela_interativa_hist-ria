@@ -5,10 +5,10 @@ class Personagem {
 
   // ambos personagens têm:
   atacar() {
-    console.log("ataque");
+    console.log("ataque da classe Personagem");
   }
   defender() {
-    console.log("defender");
+    console.log("defender da classe Personagem");
   }
 }
 

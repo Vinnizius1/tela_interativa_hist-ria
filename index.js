@@ -4,9 +4,10 @@ const prompt = require("prompt-sync")({ sigint: true });
 const Heroi = require("./classes/heroi");
 const Vilao = require("./classes/vilao1");
 
-// Importação das funções auxiliares e dos Atos
-const querVerStatus = require("./funcoes_auxiliares/querVerStatus");
+// Importação das funções auxiliares e dos "Atos"
+const solicitarExibicaoStatus = require("./funcoes_auxiliares/solicitarExibicaoStatus");
 const primeiroAto = require("./atos/primeiroAto");
+const segundoAto = require("./atos/segundoAto");
 
 // Variável que mostrará para qual "Ato" o jogador está indo
 let numeroDoProximoAto = 1;
@@ -140,6 +141,7 @@ heroi.exibirStatus("1");
 console.log();
 
 /* INÍCIO DA HISTÓRIA */
+/* Início do Prólogo */
 console.log(`
 -------
 Prólogo
@@ -156,13 +158,18 @@ console.log(
 "Qual seria o meu propósito?" - perguntava ${heroi.nome},
 "Preciso encontrar a minha princesa!" - exclamava em alto e bom som consigo mesmo, afinal estar solteiro já não o agradava mais...`
 );
+/* Fim do Prólogo */
 
+/* 1º Ato */
 primeiroAto(heroi);
 
-// Após o 1º Ato, pergunta se o usuário quer ver o status ou deseja pular para o próximo
-querVerStatus(heroi, numeroDoProximoAto);
+/*  Após o 1º Ato, pergunta se o usuário quer ver o status ou deseja pular para o próximo */
+solicitarExibicaoStatus(heroi, numeroDoProximoAto);
 
-//
 console.log();
-//
+
+/* 2º Ato */
+segundoAto(heroi);
+
+// Simples prompt final
 prompt("Digite uma tecla para continuar...");

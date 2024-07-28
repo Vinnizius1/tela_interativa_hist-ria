@@ -41,7 +41,6 @@ class Heroi extends Personagem {
     }
   }
 
-  // Métodos para restaurar o herói
   // Restaura a fome
   alimentar(fome) {
     this.fome = fome;
@@ -51,6 +50,9 @@ class Heroi extends Personagem {
   curar(vida) {
     this.vida = vida;
   }
+
+  // Método "ataque" da classe Herói (polimorfismo)
+  atacar() {}
 }
 
 module.exports = Heroi;
