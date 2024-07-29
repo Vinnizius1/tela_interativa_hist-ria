@@ -19,7 +19,7 @@ console.log(`"CAMINHO DE LUZ" - Jogo de Texto`);
 console.log();
 // 1ª apresentação do jogo
 console.log(
-  "Bem-vindo jogador, este é o seu jogo de aventura e ação! As suas atitudes importarão e um bom número sorteado no dado também... prepare-se!"
+  "Bem-vindo jogador, este é o seu jogo de aventura e ação! As suas atitudes importarão e um bom número sorteado também... prepare-se!"
 );
 console.log();
 console.log(
@@ -133,7 +133,7 @@ const armas = ["Espada", "Arco e Flecha"];
 const armaEscolhida = armas[armaDoHeroi - 1];
 
 // Adiciona a arma ao objeto herói
-heroi.arma = armaEscolhida; // Atribui a arma escolhida ao atributo arma
+heroi.arma = armaEscolhida.toLowerCase(); // Atribui a arma escolhida ao atributo arma
 
 console.log(`Arma '${armaEscolhida}' adicionada!`);
 console.log();
@@ -166,10 +166,10 @@ primeiroAto(heroi);
 /*  Após o 1º Ato, pergunta se o usuário quer ver o status ou deseja pular para o próximo */
 solicitarExibicaoStatus(heroi, numeroDoProximoAto);
 
+// Simples prompt final
+prompt("Digite uma tecla para continuar...");
+
 console.log();
 
 /* 2º Ato */
 segundoAto(heroi);
-
-// Simples prompt final
-prompt("Digite uma tecla para continuar...");

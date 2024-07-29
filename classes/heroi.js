@@ -21,14 +21,13 @@ class Heroi extends Personagem {
         console.log(`Vida: ${this.vida}%`);
         console.log(`Fome: ${this.fome}%`);
         console.log(`Força: ${this.forca}%`);
-        console.log(`Habilidade especial: ${this.habilidade}`);
+        console.log(`Habilidade: ${this.habilidade}`);
         console.log(`Arma: ${this.arma}`);
         break;
 
       case "2":
         console.log(`Vida: ${this.vida}%`);
         console.log(`Força: ${this.forca}%`);
-        console.log(`Fome: ${this.fome}%`);
         break;
 
       case "3":
@@ -52,7 +51,28 @@ class Heroi extends Personagem {
   }
 
   // Método "ataque" da classe Herói (polimorfismo)
-  atacar() {}
+  atacar() {
+    return Math.floor(Math.random() * (this.vida + this.forca));
+    // console.log(
+    //   `O herói ${this.nome} atacou e causou ${golpeRealizado} de dano!`
+    // );
+
+    // return golpeRealizado;
+  }
+
+  // Método "defender" da classe Herói (polimorfismo)
+  defender(golpe) {
+    this.vida -= golpe;
+    this.forca -= golpe;
+    //   console.log(
+    //     `O herói ${this.nome} se defendeu, mas sofreu ${golpeSofrido} de dano a sua vida e a sua força!`
+    //   );
+    //   console.log(`Novo status:
+    // Vida: ${this.vida}
+    // Força: ${this.forca}`);
+
+    //   return golpeSofrido;
+  }
 }
 
 module.exports = Heroi;

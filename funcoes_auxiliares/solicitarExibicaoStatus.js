@@ -26,8 +26,8 @@ function solicitarExibicaoStatus(heroi, numeroDoProximoAto) {
   console.log(
     `Deseja exibir seu status?
       1. Status completo do herói
-      2. Status principal
-      3. Status com arma e habilidade`
+      2. Status de vida e de força
+      3. Status de arma e de habilidade`
   );
   let opcao = prompt(
     `Digite a opção desejada (1, 2, 3), ou qualquer outra tecla para "PULAR": `
