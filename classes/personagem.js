@@ -3,12 +3,13 @@ class Personagem {
     this.vida = vida;
   }
 
-  // ambos personagens têm:
+  // Ambos personagens terão "atacar" e "defender"
   atacar() {
-    console.log("ataque da classe Personagem");
+    return Math.floor(Math.random() * this.vida);
   }
-  defender() {
-    console.log("defender da classe Personagem");
+
+  defender(golpe) {
+    this.vida -= golpe;
   }
 }
 

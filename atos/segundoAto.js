@@ -1,12 +1,18 @@
 const prompt = require("prompt-sync")({ sigint: true });
 
-// Importa as classes para simular o combate
+// Importa a classe para simular o combate contra o herói
 const Vilao = require("../classes/vilao1");
 
-// Cria instância do Vilão Fraco
-let vilaoFraco = new Vilao(30, 0);
+// Importa a função auxiliar para mostrar o resultado do combate
+const anunciarResultado = require("../funcoes_auxiliares/anunciarResultado");
 
-// Função que definirá a luta
+// Cria instância do Vilão Fraco
+let vilaoFraco = new Vilao(10, 0);
+
+// Número de turnos
+let turno = 1;
+
+/* Função que definirá a luta */
 function combate(heroi) {
   // HERÓI ataca
   let golpeDoHeroi = heroi.atacar();
@@ -16,9 +22,14 @@ function combate(heroi) {
 
   // VILÃO se defende
   vilaoFraco.defender(golpeDoHeroi);
-  console.log(`Vida do vilão: ${vilaoFraco.vida}`);
   console.log();
-  prompt("Aperte uma tecla para próximo turno!");
+  console.log(
+    `Vida do vilão: ${
+      vilaoFraco.vida < 0 ? (vilaoFraco.vida = 0) : vilaoFraco.vida
+    }`
+  );
+  console.log();
+  prompt("Pressione uma tecla para continuar");
 
   // VILÃO ataca SE estiver vivo
   if (vilaoFraco.vida > 0) {
@@ -30,12 +41,14 @@ function combate(heroi) {
     console.log();
     heroi.defender(golpeDoVilao);
     console.log(`Vida do herói: ${heroi.vida}`);
-    prompt("Aperte uma tecla para próximo turno!");
+    console.log();
+    prompt("Pressione uma tecla para próximo turno!");
   }
 }
 
-// Exportação do 2º Ato
+/* Exportação do 2º Ato */
 module.exports = heroi => {
+  console.clear();
   console.log(`
 -------
 2º Ato
@@ -54,7 +67,7 @@ Não sabe que a princesa estará para sempre presa?".`
   );
   console.log();
   console.log(`${heroi.nome} por um instante pára, assustado, sem saber o que fazer ou o que dizer contra aquela afronta, pois não sabia quem era aquele vilão e também não sabia que o amor da sua vida estava presa e não morta como havia escutado... 
-Então, como num lampejo de extrema coragem, ele disse ao Zombador:
+Então, como num lampejo de extrema coragem, ele diz ao Zombador:
     
 "Você já era!!!"
 
@@ -62,9 +75,19 @@ E partiu para a luta pegando o vilão de surpresa!`);
   console.log();
 
   // O combate durará até que a vida de alguém chegue a 0
-  /*   while (heroi.vida > 0 && vilaoFraco.vida > 0) {
-} */
-  combate(heroi);
+  while (heroi.vida > 0 && vilaoFraco.vida > 0) {
+    console.log(`${turno}º turno`);
+    combate(heroi);
+    turno += 1;
+  }
 
-  console.log("Acabou a luta!");
+  console.log();
+
+  // Quando a vida do herói ou do vilão chegar a 0, a luta acabará e chamará esta função para mostrar a mensagem final
+  anunciarResultado(heroi) ? terceiroAto(heroi) : console.log("Tente de novo!");
+
+  console.log();
+
+  // Simples prompt final
+  prompt("Digite uma tecla para continuar...");
 };

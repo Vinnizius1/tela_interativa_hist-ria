@@ -3,6 +3,7 @@ const Personagem = require("./personagem");
 class Vilao extends Personagem {
   constructor(vida, ataqueEspecial) {
     super(vida);
+
     this.ataqueEspecial = ataqueEspecial;
   }
 
@@ -10,24 +11,14 @@ class Vilao extends Personagem {
     return this.ataqueEspecial;
   }
 
-  // Método "atacar" da classe Vilão (polimorfismo)
+  // Método "atacar" da classe Vilao é herdado do pai Personagem
   atacar() {
     return Math.floor(Math.random() * this.vida);
-    // console.log(`O vilão atacou o herói, causando ${golpeRealizado} de dano!`);
-
-    // return golpeRealizado;
   }
 
-  // Método "defender" da classe Vilão (polimorfismo)
+  // Método "defender" da classe Vilão é herdado também
   defender(golpe) {
     this.vida -= golpe;
-    //   console.log(
-    //     `O vilão se defende mas sofre ${golpeSofrido} de dano a sua vida!`
-    //   );
-    //   console.log(`Novo status:
-    // Vida: ${this.vida}`);
-
-    //   return golpeSofrido;
   }
 }
 

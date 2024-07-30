@@ -6,6 +6,7 @@ class Heroi extends Personagem {
 
   constructor(vida, nome, fome, forca, habilidade) {
     super(vida);
+
     this.nome = nome;
     this.fome = fome;
     this.forca = forca;
@@ -40,7 +41,7 @@ class Heroi extends Personagem {
     }
   }
 
-  // Restaura a fome
+  /*   // Restaura a fome
   alimentar(fome) {
     this.fome = fome;
   }
@@ -49,29 +50,16 @@ class Heroi extends Personagem {
   curar(vida) {
     this.vida = vida;
   }
-
-  // Método "ataque" da classe Herói (polimorfismo)
+ */
+  // Método "atacar" da classe filha Herói é um pouco diferente da classe pai Personagem (polimorfismo)
   atacar() {
     return Math.floor(Math.random() * (this.vida + this.forca));
-    // console.log(
-    //   `O herói ${this.nome} atacou e causou ${golpeRealizado} de dano!`
-    // );
-
-    // return golpeRealizado;
   }
 
-  // Método "defender" da classe Herói (polimorfismo)
+  // Aqui a classe pai lida com a lógica de defesa inicial mas quero garantir que a classe Heroi e a classe Vilao compartilhem a funcionalidade de defesa comum
   defender(golpe) {
-    this.vida -= golpe;
-    this.forca -= golpe;
-    //   console.log(
-    //     `O herói ${this.nome} se defendeu, mas sofreu ${golpeSofrido} de dano a sua vida e a sua força!`
-    //   );
-    //   console.log(`Novo status:
-    // Vida: ${this.vida}
-    // Força: ${this.forca}`);
-
-    //   return golpeSofrido;
+    super.defender(golpe); // Reduz a vida
+    this.forca -= golpe; // Reduz a força, específico do herói
   }
 }
 
