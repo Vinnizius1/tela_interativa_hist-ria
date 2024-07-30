@@ -1,6 +1,10 @@
 const prompt = require("prompt-sync")({ sigint: true });
 
+//
+const solicitarExibicaoStatus = require("../funcoes_auxiliares/solicitarExibicaoStatus");
+
 function primeiroAto(heroi) {
+  console.clear();
   console.log(`
 -------
 1º Ato
@@ -73,6 +77,9 @@ Prontamente ele se dispõe, e traz não apenas o odre com a melhor água de poç
       console.log();
     }
   }
+
+  //
+  solicitarExibicaoStatus(heroi);
 }
 
 module.exports = primeiroAto;

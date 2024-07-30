@@ -2,15 +2,15 @@ const prompt = require("prompt-sync")({ sigint: true });
 
 // Importação das classes
 const Heroi = require("./classes/heroi");
-const Vilao = require("./classes/vilao1");
 
 // Importação das funções auxiliares e dos "Atos"
-const solicitarExibicaoStatus = require("./funcoes_auxiliares/solicitarExibicaoStatus");
+// const solicitarExibicaoStatus = require("./funcoes_auxiliares/solicitarExibicaoStatus.js");
 const primeiroAto = require("./atos/primeiroAto");
 const segundoAto = require("./atos/segundoAto");
+const terceiroAto = require("./atos/terceiroAto");
 
 // Variável que mostrará para qual "Ato" o jogador está indo
-let numeroDoProximoAto = 1;
+// let numeroDoProximoAto = 1;
 
 /* INTRODUÇÃO DO JOGO */
 console.log();
@@ -155,21 +155,32 @@ Tomou rumo pela estrada chamada 'Estreita', uma estrada muito, muito perigosa...
 console.log();
 console.log(
   `Porém, ${heroi.nome} estava decidido, resoluto, firme como uma rocha em prosseguir e jamais retroceder para aquela antiga vida com pouco significado...
+
 "Qual seria o meu propósito?" - perguntava ${heroi.nome},
 "Preciso encontrar a minha princesa!" - exclamava em alto e bom som consigo mesmo, afinal estar solteiro já não o agradava mais...`
 );
+console.log();
+prompt("Pressione uma tecla para avançar para o 1º Ato");
 /* Fim do Prólogo */
 
 /* 1º Ato */
 primeiroAto(heroi);
 
 /*  Após o 1º Ato, pergunta se o usuário quer ver o status ou deseja pular para o próximo */
-solicitarExibicaoStatus(heroi, numeroDoProximoAto);
+// solicitarExibicaoStatus(heroi);
+
+console.log();
 
 // Simples prompt final
-prompt("Digite uma tecla para continuar...");
+// prompt("Digite uma tecla para continuar... pra 2 ato");
 
 console.log();
 
 /* 2º Ato */
 segundoAto(heroi);
+
+/*  Após o 2º Ato, pergunta se o usuário quer ver o status ou deseja pular para o próximo */
+// solicitarExibicaoStatus(heroi);
+
+/* 3º Ato */
+terceiroAto(heroi);

@@ -5,7 +5,7 @@ module.exports = heroi => {
   } else {
     console.log("--- Resultado ---");
     console.log(`VITÓRIA! PARABÉNS ${heroi.nome.toUpperCase()}!!!`);
-    console.log(`Avançando para o Ato final!`);
+    console.log();
 
     // Condição para que o herói avance para o 3º e último Ato
     return true;

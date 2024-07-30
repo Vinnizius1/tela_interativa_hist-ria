@@ -3,7 +3,9 @@ const prompt = require("prompt-sync")({ sigint: true });
 // Importa a classe para simular o combate contra o herói
 const Vilao = require("../classes/vilao1");
 
-// Importa a função auxiliar para mostrar o resultado do combate
+// Importação das funções auxiliares e dos "Atos"
+const terceiroAto = require("../atos/terceiroAto");
+const solicitarExibicaoStatus = require("../funcoes_auxiliares/solicitarExibicaoStatus");
 const anunciarResultado = require("../funcoes_auxiliares/anunciarResultado");
 
 // Cria instância do Vilão Fraco
@@ -76,18 +78,30 @@ E partiu para a luta pegando o vilão de surpresa!`);
 
   // O combate durará até que a vida de alguém chegue a 0
   while (heroi.vida > 0 && vilaoFraco.vida > 0) {
-    console.log(`${turno}º turno`);
+    console.log(`*** ${turno}º turno ***`);
+    console.log();
     combate(heroi);
     turno += 1;
   }
 
   console.log();
 
-  // Quando a vida do herói ou do vilão chegar a 0, a luta acabará e chamará esta função para mostrar a mensagem final
-  anunciarResultado(heroi) ? terceiroAto(heroi) : console.log("Tente de novo!");
+  /* Quando a vida do herói ou do vilão chegar a 0, a luta acabará e chamará esta função, que se retornar "true", o herói irá para o 3º Ato */
+  if (anunciarResultado(heroi)) {
+    solicitarExibicaoStatus(heroi);
+
+    console.log();
+
+    // Simples prompt final
+    prompt("Digite uma tecla para continuar...");
+
+    terceiroAto(heroi);
+  } else {
+    console.log("Tente de novo!");
+  }
 
   console.log();
 
   // Simples prompt final
-  prompt("Digite uma tecla para continuar...");
+  // prompt("Digite uma tecla para continuar...");
 };
