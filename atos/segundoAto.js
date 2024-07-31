@@ -9,12 +9,6 @@ const combate = require("../combates/combateVilaoFraco");
 // Cria instância do Vilão Fraco
 let vilaoFraco = new Vilao(60, 0);
 
-/* // Marcará o número de turnos de combate
-let turno = 1; */
-
-/* Função que definirá a luta */
-// combate();
-
 /* Exportação do 2º Ato trazendo a importação do objeto heroi */
 module.exports = heroi => {
   console.clear();

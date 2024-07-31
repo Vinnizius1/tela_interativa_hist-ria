@@ -30,6 +30,7 @@ function solicitarExibicaoStatus(heroi) {
     // Verifica se existe uma das três opções desse array na variável "opcao"
     if (opcoesValidas.includes(opcao)) {
       console.log(`Você escolheu a opção ${opcao}.`);
+
       // Confirmação
       const confirmacao = prompt(`Confirma? (sim/nao): `);
 

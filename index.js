@@ -12,7 +12,9 @@ console.log();
 
 // Nome do jogo
 console.log(`"CAMINHO DE LUZ" - Jogo de Texto`);
+
 console.log();
+
 // 1ª apresentação do jogo
 console.log(
   "Bem-vindo jogador, este é o seu jogo de aventura e ação! As suas atitudes importarão e um bom número sorteado também... prepare-se!"
