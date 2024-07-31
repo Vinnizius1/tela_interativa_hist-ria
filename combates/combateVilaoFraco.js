@@ -2,11 +2,9 @@ const prompt = require("prompt-sync")({ sigint: true });
 
 //Importação das funções auxiliares e do 3º Ato, que dependerá de existir de acordo com a "vida" do herói
 const terceiroAto = require("../atos/terceiroAto");
+
 const solicitarExibicaoStatus = require("../funcoes_auxiliares/solicitarExibicaoStatus");
 const anunciarResultado = require("../funcoes_auxiliares/anunciarResultado");
-
-// Traz o objeto heroi e o vilão fraco
-// const heroi = require("../classes/heroi");
 
 // Variável que trará novas falas de acordo com o progresso dos turnos de combate
 let ordemDoAtaqueHeroi = 0;
@@ -16,6 +14,7 @@ let turno = 1;
 
 /* Exportação da função de combate */
 module.exports = (heroi, vilaoFraco) => {
+  /* WHILE GIGANTE */
   // O combate durará até que a vida de alguém chegue a 0
   while (heroi.vida > 0 && vilaoFraco.vida > 0) {
     console.log();
@@ -62,7 +61,7 @@ module.exports = (heroi, vilaoFraco) => {
 
     console.log();
 
-    /* GRANDE CONDIÇÕES DE IF´S */
+    /* ALGUNS DE IF´S */
     /* 2º ATAQUE - VEM DO VILÃO SE ESTIVER VIVO */
     if (vilaoFraco.vida > 0) {
       let golpeDoVilao = vilaoFraco.atacar();
@@ -87,14 +86,14 @@ module.exports = (heroi, vilaoFraco) => {
       // Se o herói estiver VIVO, haverá PRÓXIMO TURNO
       if (heroi.vida > 0) {
         prompt("Pressione uma ENTER para próximo turno!");
+        // Se o herói MORREU, exibição do GAME OVER dentro deste ELSE
       } else {
-        // Se o herói MORREU, exibição do GAME OVER
         anunciarResultado(heroi);
 
         console.log();
       }
+      // Se o vilão morreu, teremos a chamada das funções neste ELSE
     } else {
-      // Se o vilão morreu, teremos a chamada as funções
       anunciarResultado(heroi);
       solicitarExibicaoStatus(heroi);
       terceiroAto(heroi);

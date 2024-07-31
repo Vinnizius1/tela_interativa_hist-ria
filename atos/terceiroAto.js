@@ -20,5 +20,24 @@ module.exports = heroi => {
     `);
 
   // Introdução do ambiente
-  console.log(``);
+  console.log(
+    `Após derrotar o vilão Zombador, ${heroi.nome} marcha com ousadia e velocidade até chegar a "Luzeiro", cidade em que o vilão-chefe, Malvado, governa de seu castelo sombrio.
+    
+    Luzeiro, outrora bela e cheia de vida, se encontra em trevas.
+    O centro dessa cidade, referência em negócios e prosperidade, hoje é apenas um montão de ruínas e sofrimento.
+    
+    Logo, ao chegar no portão principal do castelo de Malvado, ${heroi.nome} grita com todo o ar de seus pulmões:
+    
+    "Saia daí, seu covarde! Vou derrotá-lo assim como derrotei o Zombador!" 
+
+    Malvado, cheio de raiva replica:
+
+    "Estou aqui! Acabarei com você!"
+    `
+  );
+
+  // Pausa para ir pro combate
+  prompt("Pressione ENTER para ir pro COMBATE FINAL!");
+
+  console.log("combate");
 };
