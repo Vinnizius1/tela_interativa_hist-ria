@@ -77,7 +77,7 @@ function obterHabilidadeValida() {
 console.log();
 
 // Variáveis que armazenarão o quesito "habilidade"
-const habilidadeDoHeroi = obterHabilidadeValida();
+const habilidadeDoHeroi = Number(obterHabilidadeValida());
 const habilidades = ["Força", "Sabedoria"];
 const habilidadeEscolhida = habilidades[habilidadeDoHeroi - 1];
 

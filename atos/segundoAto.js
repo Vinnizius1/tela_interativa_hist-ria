@@ -1,7 +1,7 @@
 const prompt = require("prompt-sync")({ sigint: true });
 
 // Importa a classe para simular o combate contra o herói
-const Vilao = require("../classes/vilao1");
+const Vilao = require("../classes/vilao");
 
 // Importa a função de combate ESPECÍFICA do vilão fraco
 const combate = require("../combates/combateVilaoFraco");
@@ -9,9 +9,10 @@ const combate = require("../combates/combateVilaoFraco");
 // Cria instância do Vilão Fraco
 let vilaoFraco = new Vilao(60, 0);
 
-/* Exportação do 2º Ato trazendo a importação do objeto heroi */
+/* INÍCIO DO 2º ATO */
 module.exports = heroi => {
   console.clear();
+
   console.log(`
 -------
 2º Ato

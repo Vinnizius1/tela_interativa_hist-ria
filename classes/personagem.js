@@ -12,9 +12,9 @@ class Personagem {
     this.vida -= golpe;
 
     // Garantir que "vida" não fique abaixo de 0 se "golpe" atingir um valor maior do que o dela
-    if (this.vida < 0) {
+    /* if (this.vida < 0) {
       this.vida = 0;
-    }
+    } */
   }
 }
 
