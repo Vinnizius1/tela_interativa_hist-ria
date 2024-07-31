@@ -11,7 +11,6 @@ class Heroi extends Personagem {
     this.fome = fome;
     this.forca = forca;
     this.habilidade = habilidade;
-    // this.arma = "";
   }
 
   // Método que oferece 3 opções para exibir o status
@@ -37,20 +36,9 @@ class Heroi extends Personagem {
         break;
 
       default:
-        console.log("Apertou qualquer tecla: Pulando...");
+        console.log("Apertou qualquer ENTER: Pulando...");
     }
   }
-
-  /*   // Restaura a fome
-  alimentar(fome) {
-    this.fome = fome;
-  }
-
-  // Restaura a vida
-  curar(vida) {
-    this.vida = vida;
-  }
- */
   // Método "atacar" da classe filha Herói é um pouco diferente da classe pai Personagem (polimorfismo)
   atacar() {
     return Math.floor(Math.random() * (this.vida + this.forca));
@@ -60,6 +48,11 @@ class Heroi extends Personagem {
   defender(golpe) {
     super.defender(golpe); // Reduz a vida
     this.forca -= golpe; // Reduz a força, específico do herói
+
+    // Garantir que "forca" não fique abaixo de 0 se "golpe" atingir um valor maior do que o dela
+    if (this.forca < 0) {
+      this.forca = 0;
+    }
   }
 }
 

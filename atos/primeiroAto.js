@@ -1,10 +1,12 @@
 const prompt = require("prompt-sync")({ sigint: true });
 
-//
+// Importa função auxiliar
 const solicitarExibicaoStatus = require("../funcoes_auxiliares/solicitarExibicaoStatus");
 
+/* INÍCIO DO 1º ATO */
 function primeiroAto(heroi) {
   console.clear();
+
   console.log(`
 -------
 1º Ato
@@ -44,7 +46,7 @@ O que você fará? `
     if (atitudeDoHeroi === "1") {
       console.log(
         `${heroi.nome} decidi voltar às pressas para vila.
-Logo ao pisar dentro do cercado que delimitava a região, algumas pessoas conhecidas começaram a rir dele, dizendo: "Haha! O maluco voltou correndo após sua insensatez, bem que eu disse!" - então, por um instante, a tristeza o abateu...`
+Logo ao pisar dentro do cercado que delimitava a região, algumas pessoas conhecidas começaram a rir dele, dizendo: "Haha! O maluco voltou correndo após sua insensatez, bem que eu disse!" - então, a tristeza o abateu...`
       );
       // Diminui a força do herói
       heroi.forca -= 10;
@@ -78,8 +80,10 @@ Prontamente ele se dispõe, e traz não apenas o odre com a melhor água de poç
     }
   }
 
-  //
+  // Função que exibe as opções de status
   solicitarExibicaoStatus(heroi);
+
+  console.log();
 }
 
 module.exports = primeiroAto;

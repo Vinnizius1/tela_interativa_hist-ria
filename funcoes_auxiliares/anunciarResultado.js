@@ -1,13 +1,20 @@
 module.exports = heroi => {
-  if (heroi.vida <= 0) {
+  // Os 2 possíveis resultados são VITÓRIA ou GAME OVER
+  if (heroi.vida > 0) {
+    console.log(`-----------------`);
     console.log("--- Resultado ---");
-    console.log("GAME OVER!");
-  } else {
-    console.log("--- Resultado ---");
-    console.log(`VITÓRIA! PARABÉNS ${heroi.nome.toUpperCase()}!!!`);
-    console.log();
 
-    // Condição para que o herói avance para o 3º e último Ato
-    return true;
+    console.log(`VITÓRIA!`);
+    console.log(`PARABÉNS ${heroi.nome.toUpperCase()}!!!`);
+    console.log(`-----------------`);
+    console.log();
+  } else {
+    console.log(`-----------------`);
+    console.log("--- Resultado ---");
+
+    console.log(`    GAME OVER!    `);
+    console.log(`-----------------`);
+
+    console.log();
   }
 };

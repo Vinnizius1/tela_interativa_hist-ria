@@ -1,19 +1,15 @@
 const prompt = require("prompt-sync")({ sigint: true });
 
-// Importação das classes
+// Importação da classe
 const Heroi = require("./classes/heroi");
 
-// Importação das funções auxiliares e dos "Atos"
-// const solicitarExibicaoStatus = require("./funcoes_auxiliares/solicitarExibicaoStatus.js");
+// Importação dos "Atos"
 const primeiroAto = require("./atos/primeiroAto");
 const segundoAto = require("./atos/segundoAto");
-const terceiroAto = require("./atos/terceiroAto");
-
-// Variável que mostrará para qual "Ato" o jogador está indo
-// let numeroDoProximoAto = 1;
 
 /* INTRODUÇÃO DO JOGO */
 console.log();
+
 // Nome do jogo
 console.log(`"CAMINHO DE LUZ" - Jogo de Texto`);
 console.log();
@@ -46,8 +42,8 @@ function obterNomeValido() {
 // Variável que terá o "nome" do herói retornado da função de validação
 const nomeDoHeroi = obterNomeValido();
 
-// Construção do objeto herói
-let heroi = new Heroi(100, nomeDoHeroi, 20, 100);
+// Construção do objeto herói (sua "vida" e "força" começam com 0 pois serão definidas logo a frente)
+let heroi = new Heroi(0, nomeDoHeroi, 20, 0);
 console.log();
 
 // Explicação sobre as 2 habilidades disponíveis no jogo
@@ -140,6 +136,11 @@ console.log();
 heroi.exibirStatus("1");
 console.log();
 
+// Simples prompt
+prompt("Pressione ENTER para continuar...");
+
+console.clear();
+
 /* INÍCIO DA HISTÓRIA */
 /* Início do Prólogo */
 console.log(`
@@ -159,28 +160,19 @@ console.log(
 "Qual seria o meu propósito?" - perguntava ${heroi.nome},
 "Preciso encontrar a minha princesa!" - exclamava em alto e bom som consigo mesmo, afinal estar solteiro já não o agradava mais...`
 );
+
 console.log();
-prompt("Pressione uma tecla para avançar para o 1º Ato");
+
+prompt("Pressione uma ENTER para avançar para o 1º Ato");
 /* Fim do Prólogo */
 
 /* 1º Ato */
 primeiroAto(heroi);
-
-/*  Após o 1º Ato, pergunta se o usuário quer ver o status ou deseja pular para o próximo */
-// solicitarExibicaoStatus(heroi);
-
-console.log();
-
-// Simples prompt final
-// prompt("Digite uma tecla para continuar... pra 2 ato");
 
 console.log();
 
 /* 2º Ato */
 segundoAto(heroi);
 
-/*  Após o 2º Ato, pergunta se o usuário quer ver o status ou deseja pular para o próximo */
-// solicitarExibicaoStatus(heroi);
-
 /* 3º Ato */
-terceiroAto(heroi);
+// Este Ato será chamado dentro do 2º Ato porque lá haverá combate, logo o herói poderá morrer e ter GAME OVER

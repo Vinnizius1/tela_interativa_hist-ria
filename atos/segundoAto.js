@@ -3,52 +3,19 @@ const prompt = require("prompt-sync")({ sigint: true });
 // Importa a classe para simular o combate contra o herói
 const Vilao = require("../classes/vilao1");
 
-// Importação das funções auxiliares e dos "Atos"
-const terceiroAto = require("../atos/terceiroAto");
-const solicitarExibicaoStatus = require("../funcoes_auxiliares/solicitarExibicaoStatus");
-const anunciarResultado = require("../funcoes_auxiliares/anunciarResultado");
+// Importa a função de combate ESPECÍFICA do vilão fraco
+const combate = require("../combates/combateVilaoFraco");
 
 // Cria instância do Vilão Fraco
-let vilaoFraco = new Vilao(10, 0);
+let vilaoFraco = new Vilao(60, 0);
 
-// Número de turnos
-let turno = 1;
+/* // Marcará o número de turnos de combate
+let turno = 1; */
 
 /* Função que definirá a luta */
-function combate(heroi) {
-  // HERÓI ataca
-  let golpeDoHeroi = heroi.atacar();
-  console.log(
-    `Armado com ${heroi.arma}, ${heroi.nome} desfere um golpe avassalador e acerta em cheio o Zombador, que sofre ${golpeDoHeroi} de dano!`
-  );
+// combate();
 
-  // VILÃO se defende
-  vilaoFraco.defender(golpeDoHeroi);
-  console.log();
-  console.log(
-    `Vida do vilão: ${
-      vilaoFraco.vida < 0 ? (vilaoFraco.vida = 0) : vilaoFraco.vida
-    }`
-  );
-  console.log();
-  prompt("Pressione uma tecla para continuar");
-
-  // VILÃO ataca SE estiver vivo
-  if (vilaoFraco.vida > 0) {
-    let golpeDoVilao = vilaoFraco.atacar();
-    console.log();
-    console.log(
-      `Zombador ataca ${heroi.nome}, e causa ${golpeDoVilao} de dano!`
-    );
-    console.log();
-    heroi.defender(golpeDoVilao);
-    console.log(`Vida do herói: ${heroi.vida}`);
-    console.log();
-    prompt("Pressione uma tecla para próximo turno!");
-  }
-}
-
-/* Exportação do 2º Ato */
+/* Exportação do 2º Ato trazendo a importação do objeto heroi */
 module.exports = heroi => {
   console.clear();
   console.log(`
@@ -61,14 +28,14 @@ module.exports = heroi => {
   console.log(
     `Após alguns dias de viagem, ${heroi.nome} se encontra perto do seu destino.
     
-Mas, a sua alegria durou muito muito pouco... um vilão, chamado Zombador, que rodeava aquela cidade, protegendo o castelo principal, parou a sua frente! E disse em um tom de escárnio:
+Mas, a sua alegria durou muito muito pouco... um vilão, chamado Zombador, que rodeava aquela cidade, protegendo o castelo principal, parou a sua frente! E disse em um tom de deboche:
 
 "Quem você pensa que é em vir aqui e desafiar o meu chefe?
 Pensa que conseguirá algum êxito nesta missão?
 Não sabe que a princesa estará para sempre presa?".`
   );
   console.log();
-  console.log(`${heroi.nome} por um instante pára, assustado, sem saber o que fazer ou o que dizer contra aquela afronta, pois não sabia quem era aquele vilão e também não sabia que o amor da sua vida estava presa e não morta como havia escutado... 
+  console.log(`${heroi.nome} por um instante pára, sem saber o que fazer ou o que dizer contra aquela afronta, pois não sabia quem era aquele vilão e também não sabia que o amor da sua vida estava presa e não morta como havia escutado... 
 Então, como num lampejo de extrema coragem, ele diz ao Zombador:
     
 "Você já era!!!"
@@ -76,32 +43,8 @@ Então, como num lampejo de extrema coragem, ele diz ao Zombador:
 E partiu para a luta pegando o vilão de surpresa!`);
   console.log();
 
-  // O combate durará até que a vida de alguém chegue a 0
-  while (heroi.vida > 0 && vilaoFraco.vida > 0) {
-    console.log(`*** ${turno}º turno ***`);
-    console.log();
-    combate(heroi);
-    turno += 1;
-  }
+  // Função de COMBATE
+  combate(heroi, vilaoFraco);
 
   console.log();
-
-  /* Quando a vida do herói ou do vilão chegar a 0, a luta acabará e chamará esta função, que se retornar "true", o herói irá para o 3º Ato */
-  if (anunciarResultado(heroi)) {
-    solicitarExibicaoStatus(heroi);
-
-    console.log();
-
-    // Simples prompt final
-    prompt("Digite uma tecla para continuar...");
-
-    terceiroAto(heroi);
-  } else {
-    console.log("Tente de novo!");
-  }
-
-  console.log();
-
-  // Simples prompt final
-  // prompt("Digite uma tecla para continuar...");
 };
