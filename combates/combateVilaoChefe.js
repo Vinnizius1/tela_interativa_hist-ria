@@ -1,7 +1,6 @@
 const prompt = require("prompt-sync")({ sigint: true });
 
-//Importação das funções auxiliares e do 3º Ato, que dependerá de existir de acordo com a "vida" do herói
-const terceiroAto = require("../atos/terceiroAto");
+//Importação das funções auxiliares
 const solicitarExibicaoStatus = require("../funcoes_auxiliares/solicitarExibicaoStatus");
 const anunciarResultado = require("../funcoes_auxiliares/anunciarResultado");
 
@@ -12,10 +11,10 @@ let ordemDoAtaqueHeroi = 0;
 let turno = 1;
 
 /* Exportação da função de combate */
-module.exports = (heroi, vilaoFraco) => {
+module.exports = (heroi, vilaoChefe) => {
   /* WHILE GIGANTE */
   // O combate durará até que a vida de alguém chegue a 0
-  while (heroi.vida > 0 && vilaoFraco.vida > 0) {
+  while (heroi.vida > 0 && vilaoChefe.vida > 0) {
     console.log();
 
     console.log(`*** ${turno}º turno ***`);
@@ -27,48 +26,67 @@ module.exports = (heroi, vilaoFraco) => {
 
     /* 1º ATAQUE - VEM DO HERÓI */
     let golpeDoHeroi = heroi.atacar();
-    console.log(
-      `Armado com ${heroi.arma}, ${heroi.nome} acerta o Zombador, que sofre ${golpeDoHeroi} de dano!`
-    );
 
-    // Se pela 2ª vez o HERÓI atacar o ZOMBADOR, então, ele terá uma "nova fala"
+    // Texto será diferente de acordo com a arma
+    if (heroi.arma === "espada") {
+      console.log(
+        `${heroi.nome}, com um golpe preciso de sua espada, acerta o Malvado, que sofre ${golpeDoHeroi} de dano!`
+      );
+    } else {
+      console.log(
+        `${heroi.nome} dispara sua flecha com precisão, acertando o Malvado em cheio, que sofre ${golpeDoHeroi} de dano!`
+      );
+    }
+
+    // Se pela 2ª vez o HERÓI atacar o Malvado, então, ele terá uma "nova fala"
     if (ordemDoAtaqueHeroi === 1) {
       console.log();
-      console.log(`"Você já era!" - diz ${heroi.nome}.`);
+      console.log(
+        `"Você cairá, Malvado! E salvarei a minha princesa!" - diz ${heroi.nome}.`
+      );
       console.log();
-      console.log(`"É o que veremos..." - responde Zombador, quase sem força.`);
+      console.log(
+        `"Quem você pensa que é!" - responde Malvado, cheio de raiva e dor ao mesmo tempo.`
+      );
+    } else if (ordemDoAtaqueHeroi === 2) {
+      console.log();
+      console.log(`"Este é o seu FIM!" - diz ${heroi.nome}.`);
+      console.log();
+      console.log(
+        `Malvado, nem consegue responder, apenas murmura quase que inaudivelmente - "Ahh...".`
+      );
     }
 
     // Controle do número de vezes que o herói ataca o vilão
     ordemDoAtaqueHeroi++;
 
     // VILÃO se defende
-    vilaoFraco.defender(golpeDoHeroi);
+    vilaoChefe.defender(golpeDoHeroi);
 
     console.log();
 
     // Mostra a vida atual do vilão
     console.log(
       `Vida do vilão: ${
-        vilaoFraco.vida <= 0 ? (vilaoFraco.vida = 0) : vilaoFraco.vida
+        vilaoChefe.vida <= 0 ? (vilaoChefe.vida = 0) : vilaoChefe.vida
       }`
     );
 
     console.log();
 
-    prompt("Pressione uma ENTER para continuar");
+    // prompt("Pressione uma ENTER para continuar");
 
     console.log();
 
     /* ALGUNS DE IF´S */
     /* 2º ATAQUE - VEM DO VILÃO SE ESTIVER VIVO */
-    if (vilaoFraco.vida > 0) {
-      let golpeDoVilao = vilaoFraco.atacar();
+    if (vilaoChefe.vida > 0) {
+      let golpeDoVilao = vilaoChefe.atacar();
 
       console.log();
 
       console.log(
-        `Zombador ataca ${heroi.nome}, e causa ${golpeDoVilao} de dano!`
+        `Malvado ataca ${heroi.nome}, e causa ${golpeDoVilao} de dano!`
       );
 
       console.log();
@@ -87,15 +105,20 @@ module.exports = (heroi, vilaoFraco) => {
         prompt("Pressione uma ENTER para próximo turno!");
         // Se o herói MORREU, exibição do GAME OVER dentro deste ELSE
       } else {
-        anunciarResultado(heroi, vilaoFraco, null);
+        anunciarResultado(heroi, null, vilaoChefe);
 
         console.log();
+
+        console.log("Novidades em breve...");
       }
       // Se o vilão morreu, teremos a chamada das funções neste ELSE
     } else {
-      anunciarResultado(heroi, vilaoFraco, null);
+      anunciarResultado(heroi, null, vilaoChefe);
       solicitarExibicaoStatus(heroi);
-      terceiroAto(heroi);
+
+      console.log();
+
+      console.log("Novidades em breve...");
     }
   }
 };

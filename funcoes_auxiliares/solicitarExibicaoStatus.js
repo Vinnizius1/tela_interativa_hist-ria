@@ -48,6 +48,10 @@ function solicitarExibicaoStatus(heroi) {
 
         break; // Sai do loop se a confirmação for positiva
       }
+    } else if (numeroDoProximoAto === 3) {
+      console.log("Fim do Ato 3!");
+
+      break;
     } else {
       console.log(`Pulando para o "${(numeroDoProximoAto += 1)}º Ato"!`);
 

@@ -6,8 +6,11 @@ const Vilao = require("../classes/vilao");
 // Importa a função auxiliar para mostrar o resultado do combate
 // const anunciarResultado = require("../funcoes_auxiliares/anunciarResultado");
 
+// Importa a função de combate ESPECÍFICA do vilão fraco
+const combateVilaoChefe = require("../combates/combateVilaoChefe");
+
 // Cria instância do Vilão Fraco
-let vilaoBoss = new Vilao(200, 50);
+let vilaoChefe = new Vilao(150, 50);
 
 /* INÍCIO DO 3º ATO */
 module.exports = heroi => {
@@ -39,5 +42,8 @@ module.exports = heroi => {
   // Pausa para ir pro combate
   prompt("Pressione ENTER para ir pro COMBATE FINAL!");
 
-  console.log("combate");
+  // Função de combate
+  combateVilaoChefe(heroi, vilaoChefe);
+
+  console.log();
 };
