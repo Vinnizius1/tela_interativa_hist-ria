@@ -48,11 +48,6 @@ class Heroi extends Personagem {
   defender(golpe) {
     super.defender(golpe); // Reduz a vida
     this.forca -= golpe; // Reduz a força, específico do herói
-
-    // Garantir que "forca" não fique abaixo de 0 se "golpe" atingir um valor maior do que o dela
-    /* if (this.forca < 0) {
-      this.forca = 0;
-    } */
   }
 }
 

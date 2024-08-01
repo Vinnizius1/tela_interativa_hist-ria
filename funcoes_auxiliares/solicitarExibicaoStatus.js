@@ -46,6 +46,11 @@ function solicitarExibicaoStatus(heroi) {
         // Simples prompt
         prompt("Pressione ENTER para continuar...");
 
+        console.log();
+
+        // Esta frase será exibida optou por "sim" e está no 3º Ato
+        numeroDoProximoAto = 3 ? console.log("Fim do Ato 3!") : null;
+
         break; // Sai do loop se a confirmação for positiva
       }
     } else if (numeroDoProximoAto === 3) {

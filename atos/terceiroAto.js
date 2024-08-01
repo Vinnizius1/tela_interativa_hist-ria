@@ -10,7 +10,7 @@ const Vilao = require("../classes/vilao");
 const combateVilaoChefe = require("../combates/combateVilaoChefe");
 
 // Cria instância do Vilão Fraco
-let vilaoChefe = new Vilao(150, 50);
+let vilaoChefe = new Vilao(130, 50);
 
 /* INÍCIO DO 3º ATO */
 module.exports = heroi => {

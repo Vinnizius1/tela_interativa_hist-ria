@@ -13,12 +13,12 @@ class Vilao extends Personagem {
 
   // Método "atacar" da classe Vilao é herdado do pai Personagem
   atacar() {
-    return Math.floor(Math.random() * this.vida);
+    return super.atacar();
   }
 
   // Método "defender" da classe Vilão é herdado também
   defender(golpe) {
-    this.vida -= golpe;
+    super.defender(golpe);
   }
 }
 
